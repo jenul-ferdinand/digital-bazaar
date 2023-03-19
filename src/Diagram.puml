@@ -1,30 +1,48 @@
 @startuml
 
 class BazarDriver {
-
+    + void main(String[] args)
 }
 
 class Store {
-
+    - Computer[] computers
+    - Printer[] printers
+    + void initStore(int numComputers, int numPrinters)
+    + void createComputers()
+    + void createPrinters()
+    + void printComputers()
+    + void printPrinters()
+    + void runBazar()
 }
 
 class Printer {
-
+    - int ppm
+    + int getPpm()
+    + String toString()
 }
 
 class Computer {
-
+    - String manufacture
+    + String getManufacture()
+    + void setManufacture(String manufacture)
+    + String toString()
 }
 
 class Device {
-
+    - String name
+    - String description
+    + String getName()
+    + String getDescription()
+    + void setName(String name)
+    + void setDescription(String description)
+    + String toString()
 }
 
 Printer -u-|> Device
 Computer -u-|> Device
 
-Printer "2" -r-* "1" Store : creates <
-Computer "3" -l-* "1" Store : creates <
+Printer "2" *-r- "1" Store : creates <
+Computer "3" *-l- "1" Store : creates <
 
 BazarDriver "1" .u.> "1" Store : creates >
 

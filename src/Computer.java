@@ -9,11 +9,16 @@ public class Computer extends Device {
         setManufacture(manufacture);
     }
 
+    // Getters and Setters
     public String getManufacture() {
         return manufacture;
     }
-
     public void setManufacture(String manufacture) {
         this.manufacture = manufacture;
+    }
+
+    // toString
+    public String toString() {
+        return super.toString() + " | Manufacture: " + this.getManufacture();
     }
 }

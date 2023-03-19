@@ -1,4 +1,5 @@
 public class Store {
+    // Attributes
     private Computer[] computers;
     private Printer[] printers;
 
@@ -22,16 +23,16 @@ public class Store {
     // Printing the lists of the devices
     public void printComputers() {
         for (int i = 0; i < computers.length; i++) {
-            System.out.println(computers[i].getClass().getSimpleName() + " (" + i + ") " + computers[i].toString() + " | Manufacture: " + computers[i].getManufacture());
+            System.out.println(computers[i].getClass().getSimpleName() + " (" + i + ") " + computers[i].toString());
         }
     }
     public void printPrinters() {
         for (int i = 0; i < printers.length; i++) {
-            System.out.println(printers[i].getClass().getSimpleName() + " (" + i + ") " + printers[i].toString() + " | PPM: " + printers[i].getPpm());
+            System.out.println(printers[i].getClass().getSimpleName() + " (" + i + ") " + printers[i].toString());
         }
     }
 
-    // Running the methods above
+    // Method to run all the other methods above
     public void runBazar() {
         initStore(3, 2);
         createComputers();
