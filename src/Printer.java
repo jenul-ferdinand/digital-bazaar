@@ -1,12 +1,18 @@
 public class Printer extends Device {
     // Attributes
-    private int ppm = 1;
+    private int ppm;
 
     // Constructor
     Printer(String name, String description, int ppm) {
         super(name, description);
 
         setPpm(ppm);
+    }
+
+    // ID Generator
+    @Override
+    public int generateId() {
+        return Utils.nextID(100, 999);
     }
 
     // Getters and setters

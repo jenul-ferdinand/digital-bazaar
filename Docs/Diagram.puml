@@ -1,7 +1,7 @@
 @startuml
 
 class BazarDriver {
-    + void main(String[] args)
+    + {static} void main(String[] args)
 }
 
 class Store {
@@ -17,25 +17,36 @@ class Store {
 
 class Printer {
     - int ppm
+    + int generateID()
     + int getPpm()
     + String toString()
 }
 
 class Computer {
     - String manufacture
+    + int generateID()
     + String getManufacture()
     + void setManufacture(String manufacture)
     + String toString()
 }
 
-class Device {
+abstract class Device {
     - String name
     - String description
+    + {abstract} int generateID()
     + String getName()
     + String getDescription()
     + void setName(String name)
     + void setDescription(String description)
     + String toString()
+}
+
+class MenuInput {
+    + {static} int menuItem()
+}
+
+class Utils {
+    + {static} int nextID(int low, int high)
 }
 
 Printer -u-|> Device

@@ -1,12 +1,18 @@
 public class Computer extends Device {
     // Attributes
-    private String manufacture = "";
+    private String manufacture;
 
     // Constructor
     Computer(String name, String description, String manufacture) {
         super(name, description);
 
         setManufacture(manufacture);
+    }
+
+    // ID Generator
+    @Override
+    public int generateId() {
+        return Utils.nextID(100000, 9999999);
     }
 
     // Getters and Setters
