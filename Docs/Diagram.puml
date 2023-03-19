@@ -5,8 +5,8 @@ class BazarDriver {
 }
 
 class Store {
-    - Computer[] computers
-    - Printer[] printers
+    - ArrayList<Computer> computers
+    - ArrayList<Printer> printers
     + void initStore(int numComputers, int numPrinters)
     + void createComputers()
     + void createPrinters()
@@ -55,8 +55,11 @@ Computer -u-|> Device
 Printer "2" *-r- "1" Store : creates <
 Computer "3" *-l- "1" Store : creates <
 
-BazarDriver "1" .u.> "1" Store : creates >
+Printer ---> Utils : uses >
+Computer --->  Utils : uses >
 
+BazarDriver "1" .u.> "1" Store : creates >
+BazarDriver ---> MenuInput : uses >
 
 
 @enduml
