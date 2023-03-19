@@ -1,41 +1,73 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Store {
-    private Computer[] computers;
-    private Printer[] printers;
+    // Attributes
+    private ArrayList<Computer> computers;
+    private ArrayList<Printer> printers;
 
     // Initialise a specified amount of objects in computers and printers
     public void initStore(int numComputers, int numPrinters) {
-        computers = new Computer[numComputers];
-        printers = new Printer[numPrinters];
+        computers = new ArrayList<Computer>(numComputers);
+        printers = new ArrayList<Printer>(numPrinters);
     }
 
     // Adding to the lists of the devices
     public void createComputers() {
-        computers[0] = new Computer("XPS", "Laptop 16 inch", "Dell");
-        computers[1] = new Computer("iMac", "Desktop 27 inch", "Apple");
-        computers[2] = new Computer("Thinkpad", "Laptop 14 inch", "Lenovo");
+        // Local vars
+        String name, description, manufacture;
+
+        // Initialise scanner
+        Scanner sel = new Scanner(System.in);
+
+        // Questions and assignment
+        System.out.print("Enter Device Name: ");
+        name = sel.nextLine();
+        System.out.print("Enter Device Description: ");
+        description = sel.nextLine();
+        System.out.print("Enter Computer Manufacture: ");
+        manufacture = sel.next();
+
+        // Create the computer and add to the ArrayList
+        Computer aComputer = new Computer(name, description, manufacture);
+        computers.add(aComputer);
     }
     public void createPrinters() {
-        printers[0] = new Printer("Brother", "MFC-L2750DW Wireless Mono Laser", 34);
-        printers[1] = new Printer("HP", "M282nw Color LaserJet Pro MFP", 21);
+        // Local variables
+        String name, description;
+        int ppm;
+
+        // Initialise scanner
+        Scanner sel = new Scanner(System.in);
+
+        // Questions and assignment
+        System.out.print("Enter Device Name: ");
+        name = sel.nextLine();
+        System.out.print("Enter Device Description: ");
+        description = sel.nextLine();
+        System.out.print("Enter Printer PPM: ");
+        ppm = sel.nextInt();
+
+        // Create the printer and add the ArrayList
+        Printer aPrinter = new Printer(name, description, ppm);
+        printers.add(aPrinter);
     }
 
     // Printing the lists of the devices
     public void printComputers() {
-        for (int i = 0; i < computers.length; i++) {
-            System.out.println(computers[i].getClass().getSimpleName() + " (" + i + ") " + computers[i].toString() + " | Manufacture: " + computers[i].getManufacture());
+        for (int i = 0; i < computers.size(); i++) {
+            System.out.println(computers.get(i).getClass().getSimpleName() + " (" + i + ") " + computers.get(i).toString());
         }
     }
     public void printPrinters() {
-        for (int i = 0; i < printers.length; i++) {
-            System.out.println(printers[i].getClass().getSimpleName() + " (" + i + ") " + printers[i].toString() + " | PPM: " + printers[i].getPpm());
+        for (int i = 0; i < printers.size(); i++) {
+            System.out.println(printers.get(i).getClass().getSimpleName() + " (" + i + ") " + printers.get(i).toString());
         }
     }
 
-    // Running the methods above
+    // Method to run all the other methods above
     public void runBazar() {
         initStore(3, 2);
-        createComputers();
-        createPrinters();
         printComputers();
         printPrinters();
     }
