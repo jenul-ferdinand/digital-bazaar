@@ -52,8 +52,8 @@ class Utils {
 Printer -u-|> Device
 Computer -u-|> Device
 
-Printer "2" *-r- "1" Store : creates <
-Computer "3" *-l- "1" Store : creates <
+Printer "2..*" *-r- "1" Store : creates <
+Computer "3..*" *-l- "1" Store : creates <
 
 Printer ---> Utils : uses >
 Computer --->  Utils : uses >
