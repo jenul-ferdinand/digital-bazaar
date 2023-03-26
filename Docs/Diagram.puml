@@ -1,53 +1,62 @@
 @startuml
 
+
 class BazarDriver {
     + {static} void main(String[] args)
 }
 
-class Store {
-    - ArrayList<Computer> computers
-    - ArrayList<Printer> printers
-    + void initStore(int numComputers, int numPrinters)
-    + void createComputers()
-    + void createPrinters()
-    + void printComputers()
-    + void printPrinters()
-    + void runBazar()
+package Controllers {
+    class Store {
+        - ArrayList<Computer> computers
+        - ArrayList<Printer> printers
+        + void initStore(int numComputers, int numPrinters)
+        + void createComputers()
+        + void createPrinters()
+        + void printComputers()
+        + void printPrinters()
+        + void runBazar()
+    }
 }
 
-class Printer {
-    - int ppm
-    + int generateID()
-    + int getPpm()
-    + String toString()
+package Models {
+
+    class Printer {
+        - int ppm
+        + int generateID()
+        + int getPpm()
+        + String toString()
+    }
+
+    class Computer {
+        - String manufacture
+        + int generateID()
+        + String getManufacture()
+        + void setManufacture(String manufacture)
+        + String toString()
+    }
+
+    abstract class Device <<Abstract>> {
+        - String name
+        - String description
+        + {abstract} int generateID()
+        + String getName()
+        + String getDescription()
+        + void setName(String name)
+        + void setDescription(String description)
+        + String toString()
+    }
 }
 
-class Computer {
-    - String manufacture
-    + int generateID()
-    + String getManufacture()
-    + void setManufacture(String manufacture)
-    + String toString()
+package Utility {
+    class MenuInput {
+        + {static} int menuItem()
+    }
+
+    class Utils {
+        + {static} int nextID(int low, int high)
+    }
 }
 
-abstract class Device <<Abstract>> {
-    - String name
-    - String description
-    + {abstract} int generateID()
-    + String getName()
-    + String getDescription()
-    + void setName(String name)
-    + void setDescription(String description)
-    + String toString()
-}
-
-class MenuInput {
-    + {static} int menuItem()
-}
-
-class Utils {
-    + {static} int nextID(int low, int high)
-}
 
 Printer -u-|> Device
 Computer -u-|> Device
