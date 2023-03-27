@@ -4,7 +4,7 @@ import main.utility.PurchaseType;
 
 import java.util.Scanner;
 
-public class Purchase  {
+public abstract class Purchase {
     private int purchaseID;
     private int customerID;
     private int deviceID;

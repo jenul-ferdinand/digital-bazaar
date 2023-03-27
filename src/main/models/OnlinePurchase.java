@@ -5,7 +5,7 @@ import main.utility.PurchaseType;
 public class OnlinePurchase extends Purchase {
     private String deliveryAddress;
 
-    OnlinePurchase(int purchaseID, int customerID, int deviceID, PurchaseType purchaseType, String date, String deliveryAddress) {
+    public OnlinePurchase(int purchaseID, int customerID, int deviceID, String date, PurchaseType purchaseType, String deliveryAddress) {
         super(purchaseID, customerID, deviceID, date, purchaseType);
 
         setDeliveryAddress(deliveryAddress);

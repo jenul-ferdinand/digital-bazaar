@@ -5,7 +5,7 @@ import main.utility.PurchaseType;
 public class InStorePurchase extends Purchase {
     private String storeLocation;
 
-    InStorePurchase(int purchaseID, int customerID, int deviceID, PurchaseType purchaseType, String date, String storeLocation) {
+    public InStorePurchase(int purchaseID, int customerID, int deviceID, String date, PurchaseType purchaseType, String storeLocation) {
         super(purchaseID, customerID, deviceID, date, purchaseType);
 
         setStoreLocation(storeLocation);
