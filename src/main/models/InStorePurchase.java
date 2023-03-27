@@ -1,5 +1,21 @@
 package main.models;
 
-public class InStorePurchase extends Purchase {
+import main.utility.PurchaseType;
 
+public class InStorePurchase extends Purchase {
+    private String storeLocation;
+
+    InStorePurchase(int purchaseID, int customerID, int deviceID, PurchaseType purchaseType, String date, String storeLocation) {
+        super(purchaseID, customerID, deviceID, purchaseType, date);
+
+        setStoreLocation(storeLocation);
+    }
+
+    public String getStoreLocation() {
+        return storeLocation;
+    }
+
+    public void setStoreLocation(String storeLocation) {
+        this.storeLocation = storeLocation;
+    }
 }
