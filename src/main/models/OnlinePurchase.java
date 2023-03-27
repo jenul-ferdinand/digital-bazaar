@@ -6,7 +6,7 @@ public class OnlinePurchase extends Purchase {
     private String deliveryAddress;
 
     OnlinePurchase(int purchaseID, int customerID, int deviceID, PurchaseType purchaseType, String date, String deliveryAddress) {
-        super(purchaseID, customerID, deviceID, purchaseType, date);
+        super(purchaseID, customerID, deviceID, date, purchaseType);
 
         setDeliveryAddress(deliveryAddress);
     }

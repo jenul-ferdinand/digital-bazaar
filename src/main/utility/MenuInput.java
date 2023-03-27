@@ -10,9 +10,11 @@ public class MenuInput {
         // List out the options
         System.out.println("1) New Computer");
         System.out.println("2) New Printer");
-        System.out.println("3) List Computers");
-        System.out.println("4) List Printers");
-        System.out.println("5) Exit");
+        System.out.println("3) New Purchase");
+        System.out.println("4) List Computers");
+        System.out.println("5) List Printers");
+        System.out.println("6) List Purchases");
+        System.out.println("7) Exit");
         System.out.print("Select one:");
 
         // Get the choice integer

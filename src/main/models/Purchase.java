@@ -2,14 +2,16 @@ package main.models;
 
 import main.utility.PurchaseType;
 
-abstract class Purchase {
+import java.util.Scanner;
+
+public class Purchase  {
     private int purchaseID;
     private int customerID;
     private int deviceID;
     private String date;
     PurchaseType purchaseType;
 
-    Purchase(int purchaseID, int customerID, int deviceID, PurchaseType purchaseType, String date) {
+    public Purchase(int purchaseID, int customerID, int deviceID, String date, PurchaseType purchaseType) {
         setPurchaseID(purchaseID);
         setCustomerID(customerID);
         setDeviceID(deviceID);
@@ -17,6 +19,7 @@ abstract class Purchase {
         setPurchaseType(purchaseType);
     }
 
+    // Getters and Setters
     public int getPurchaseID() {
         return purchaseID;
     }
@@ -58,6 +61,6 @@ abstract class Purchase {
     }
 
     public String toString() {
-        return "Purchase ID: " + getPurchaseID() + " Customer ID: " + getCustomerID() + " Date: " + getDate() + " Type: " + getType();
+        return "Purchase ID: " + getPurchaseID() + " Customer ID: " + getCustomerID() + " Date: " + getDate() + " Type: " + getPurchaseType();
     }
 }
