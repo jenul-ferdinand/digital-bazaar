@@ -1,3 +1,11 @@
+package main;
+
+// Import the Store from the controllers package
+import main.controllers.PurchaseManager;
+import main.controllers.Store;
+// Import the MenuInput from the utility package
+import main.utility.MenuInput;
+
 public class BazarDriver {
     public static void main(String[] args) {
         // Create an instance of Store
@@ -8,6 +16,9 @@ public class BazarDriver {
 
         // Local variable selection
         int selection;
+
+
+        PurchaseManager manager = new PurchaseManager();
 
         // Do while
         do {
@@ -23,17 +34,26 @@ public class BazarDriver {
                 case 2:
                     store.createPrinters();
                     break;
-                // List Computers
+                // Create Purchase
                 case 3:
+
+                    break;
+                // List Computers
+                case 4:
                     store.printComputers();
                     break;
                 // List Printers
-                case 4:
+                case 5:
                     store.printPrinters();
                     break;
+                // List Purchases
+                case 6:
+
+                    break;
                 // Exit
-                case 5:
+                case 7:
                     System.exit(0);
+                    break;
             }
         }
         while (true);

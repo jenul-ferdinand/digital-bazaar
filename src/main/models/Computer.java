@@ -1,9 +1,13 @@
+package main.models;
+
+import main.utility.Utils;
+
 public class Computer extends Device {
     // Attributes
     private String manufacture;
 
     // Constructor
-    Computer(String name, String description, String manufacture) {
+    public Computer(String name, String description, String manufacture) {
         super(name, description);
 
         setManufacture(manufacture);

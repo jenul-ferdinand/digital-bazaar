@@ -1,7 +1,12 @@
+package main.controllers;
+
+import main.models.Computer;
+import main.models.Printer;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Store {
+public class Store implements IData {
     // Attributes
     private ArrayList<Computer> computers;
     private ArrayList<Printer> printers;
@@ -63,6 +68,22 @@ public class Store {
         for (int i = 0; i < printers.size(); i++) {
             System.out.println(printers.get(i).getClass().getSimpleName() + " (" + i + ") " + printers.get(i).toString());
         }
+    }
+
+    public boolean isDeviceAvailable(int id) {
+        for (int i = 0; i < computers.size(); i++) {
+            if (id == computers.get(i).getId()) {
+                return true;
+            }
+        }
+
+        for (int j = 0; j < printers.size(); j++) {
+            if (id == printers.get(j).getId()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     // Method to run all the other methods above

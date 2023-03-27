@@ -1,9 +1,13 @@
+package main.models;
+
+import main.utility.Utils;
+
 public class Printer extends Device {
     // Attributes
     private int ppm;
 
     // Constructor
-    Printer(String name, String description, int ppm) {
+    public Printer(String name, String description, int ppm) {
         super(name, description);
 
         setPpm(ppm);

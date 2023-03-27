@@ -1,65 +1,55 @@
 @startuml
 
-class BazarDriver {
-    + {static} void main(String[] args)
+skinparam linetype ortho
+
+class BazarDriver
+
+package Controllers {
+    class Store
+
+    class PurchaseManager
+
+    class IData
 }
 
-class Store {
-    - ArrayList<Computer> computers
-    - ArrayList<Printer> printers
-    + void initStore(int numComputers, int numPrinters)
-    + void createComputers()
-    + void createPrinters()
-    + void printComputers()
-    + void printPrinters()
-    + void runBazar()
+package Models {
+    abstract class Device <<abstract>>
+
+    class Printer
+
+    class Computer
+
+    abstract class Purchase <<abstract>>
+
+    class inStorePurchase
+
+    class OnlinePurchase
 }
 
-class Printer {
-    - int ppm
-    + int generateID()
-    + int getPpm()
-    + String toString()
+package Utility {
+    class MenuInput
+
+    class Utils
+
+    enum PurchaseType <<enum>>
 }
 
-class Computer {
-    - String manufacture
-    + int generateID()
-    + String getManufacture()
-    + void setManufacture(String manufacture)
-    + String toString()
-}
-
-abstract class Device {
-    - String name
-    - String description
-    + {abstract} int generateID()
-    + String getName()
-    + String getDescription()
-    + void setName(String name)
-    + void setDescription(String description)
-    + String toString()
-}
-
-class MenuInput {
-    + {static} int menuItem()
-}
-
-class Utils {
-    + {static} int nextID(int low, int high)
-}
 
 Printer -u-|> Device
 Computer -u-|> Device
 
-Printer "2..*" *-r- "1" Store : creates <
-Computer "3..*" *-l- "1" Store : creates <
+Printer "*" ---> "1" Store : creates
+Computer "*" ---> "1" Store : creates
 
-Printer ---> Utils : uses >
-Computer --->  Utils : uses >
+Printer ...> Utils : uses
+Computer ...>  Utils : uses
 
-BazarDriver "1" .u.> "1" Store : creates >
-BazarDriver ---> MenuInput : uses >
+BazarDriver "1" .u.> "1" Store
+BazarDriver ...> MenuInput
 
+BazarDriver "1" ---> "1" PurchaseManager
+
+PurchaseManager --> Purchase : creates
+PurchaseManager ...> IData : uses
 
 @enduml

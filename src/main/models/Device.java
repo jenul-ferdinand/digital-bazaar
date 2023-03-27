@@ -1,3 +1,5 @@
+package main.models;
+
 abstract class Device {
     // Attributes
     private String name;
