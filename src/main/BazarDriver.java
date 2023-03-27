@@ -1,3 +1,10 @@
+package main;
+
+// Import the Store from the controllers package
+import main.controllers.Store;
+// Import the MenuInput from the utility package
+import main.utility.MenuInput;
+
 public class BazarDriver {
     public static void main(String[] args) {
         // Create an instance of Store

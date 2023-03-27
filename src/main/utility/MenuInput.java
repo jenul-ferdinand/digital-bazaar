@@ -1,3 +1,5 @@
+package main.utility;
+
 import java.util.Scanner;
 
 public class MenuInput {

@@ -1,3 +1,8 @@
+package main.controllers;
+
+import main.models.Computer;
+import main.models.Printer;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
