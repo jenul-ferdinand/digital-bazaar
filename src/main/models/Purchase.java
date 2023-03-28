@@ -9,7 +9,7 @@ public abstract class Purchase {
     private int customerID;
     private int deviceID;
     private String date;
-    PurchaseType purchaseType;
+    PurchaseType purchaseType; // Private
 
     public Purchase(int purchaseID, int customerID, int deviceID, String date, PurchaseType purchaseType) {
         setPurchaseID(purchaseID);

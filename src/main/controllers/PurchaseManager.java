@@ -13,12 +13,16 @@ public class PurchaseManager {
 
     private ArrayList<Purchase> purchases = new ArrayList<>();
 
+    // This method is called in the CreatePurchase method inside Store
     public void makePurchase(IData devices, Purchase data) {
         if (devices.isDeviceAvailable(data.getDeviceID())) {
-            createPurchase();
+            // Add data to the purchases array list
         }
     }
 
+    // Implement print purchase method here
+
+    // This should be in Store
     public void createPurchase() {
         int customerID, deviceID, type;
         String date, deliveryAddress, storeLocation;

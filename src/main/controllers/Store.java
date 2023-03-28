@@ -12,7 +12,7 @@ public class Store implements IData {
     private ArrayList<Printer> printers;
 
     // Initialise a specified amount of objects in computers and printers
-    public void initStore(int numComputers, int numPrinters) {
+    public void initStore(int numComputers, int numPrinters) { // Should accept MenuManager and PurchaseManager
         computers = new ArrayList<Computer>(numComputers);
         printers = new ArrayList<Printer>(numPrinters);
     }

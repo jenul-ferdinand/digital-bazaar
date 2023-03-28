@@ -3,7 +3,7 @@ package main.utility;
 import java.util.Scanner;
 
 public class MenuInput {
-    public static int menuItem() {
+    public static int menuItem() { // Should not be static
         // Initialise scanner for input
         Scanner sel = new Scanner(System.in);
 
