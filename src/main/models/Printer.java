@@ -13,7 +13,7 @@ public class Printer extends Device {
         setPpm(ppm);
     }
 
-    // ID Generator
+    // ID Generator (abstract extension from Device
     @Override
     public int generateId() {
         return Utils.nextID(100, 999);

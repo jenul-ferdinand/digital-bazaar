@@ -2,8 +2,8 @@ package main.utility;
 
 import java.util.Scanner;
 
-public class MenuInput {
-    public static int menuItem() { // Should not be static
+public class MenuManager {
+    public int menuItem() { // Should not be static
         // Initialise scanner for input
         Scanner sel = new Scanner(System.in);
 

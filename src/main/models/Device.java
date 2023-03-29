@@ -13,6 +13,7 @@ abstract class Device {
         setId(id);
     }
 
+    // Abstract method to generate id for the extensions of this class
     public abstract int generateId();
 
     // Getters and Setters

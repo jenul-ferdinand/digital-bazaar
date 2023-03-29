@@ -13,7 +13,7 @@ public class Computer extends Device {
         setManufacture(manufacture);
     }
 
-    // ID Generator
+    // ID Generator (abstract extension from Device)
     @Override
     public int generateId() {
         return Utils.nextID(100000, 9999999);
