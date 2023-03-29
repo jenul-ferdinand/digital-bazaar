@@ -4,7 +4,7 @@ skinparam linetype ortho
 
 class BazarDriver
 
-package Controllers {
+package controllers {
     class Store
 
     class PurchaseManager
@@ -12,7 +12,7 @@ package Controllers {
     class IData
 }
 
-package Models {
+package models {
     abstract class Device <<abstract>>
 
     class Printer
@@ -21,12 +21,12 @@ package Models {
 
     abstract class Purchase <<abstract>>
 
-    class inStorePurchase
+    class InStorePurchase
 
     class OnlinePurchase
 }
 
-package Utility {
+package utility {
     class MenuInput
 
     class Utils
@@ -35,21 +35,27 @@ package Utility {
 }
 
 
-Printer -u-|> Device
-Computer -u-|> Device
+Printer --u-|> Device : <<extends>>
+Computer --u-|> Device : <<extends>>
 
-Printer "*" ---> "1" Store : creates
-Computer "*" ---> "1" Store : creates
+Printer "*" <--- "1" Store : creates
+Computer "*" <--- "1" Store : creates
 
-Printer ...> Utils : uses
-Computer ...>  Utils : uses
+Printer ...> Utils
+Computer ...>  Utils
 
-BazarDriver "1" .u.> "1" Store
-BazarDriver ...> MenuInput
+BazarDriver ....> Store
+BazarDriver ....> MenuInput
 
-BazarDriver "1" ---> "1" PurchaseManager
+BazarDriver "1" ---> "1" PurchaseManager : creates
 
-PurchaseManager --> Purchase : creates
-PurchaseManager ...> IData : uses
+PurchaseManager "1" --> "*" Purchase : creates
+PurchaseManager ...> IData
+
+Purchase ...> PurchaseType
+OnlinePurchase --u-|> Purchase : <<extends>>
+InStorePurchase --u-|> Purchase : <<extends>>
+
+
 
 @enduml
