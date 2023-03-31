@@ -1,15 +1,21 @@
+// Package: main
 package main;
 
-// Import the Store from the controllers package
+// PurchaseManager
 import main.controllers.PurchaseManager;
+// Store
 import main.controllers.Store;
-// Import the MenuInput from the utility package
+// MenuManager
 import main.utility.MenuManager;
 
-import java.awt.*;
-
+// === === === Driver Class: BazarDriver === === ===
 public class BazarDriver {
+    /**
+     * The main method of the project, the driver.
+     * @param args
+     */
     public static void main(String[] args) {
+        // Create instance of the MenuManager
         MenuManager menuManager = new MenuManager();
 
         // Create instance of PurchaseManager

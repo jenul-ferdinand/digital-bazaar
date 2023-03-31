@@ -1,14 +1,20 @@
+// Package: main.controllers
 package main.controllers;
 
+// Computer, Device, InStorePurchase, OnlinePurchase, Printer, and Purchase
 import main.models.*;
+// MenuManager
 import main.utility.MenuManager;
+// PurchaseType
 import main.utility.PurchaseType;
+// Utils
 import main.utility.Utils;
-
-import java.awt.*;
+// ArrayList
 import java.util.ArrayList;
+// Scanner
 import java.util.Scanner;
 
+// === === === Class === === ===
 public class Store implements IData {
     // Attributes
     private ArrayList<Computer> computers;
@@ -16,6 +22,11 @@ public class Store implements IData {
     private MenuManager menuManager;
     private PurchaseManager purchaseManager;
 
+    /**
+     * Constructs and initialises a Store with MenuManager and PurchaseManager
+     * @param menuManager Instance of MenuManager
+     * @param purchaseManager Instance of Purchase Manager
+     */
     public Store(MenuManager menuManager, PurchaseManager purchaseManager) {
         // Define the MenuManager and PurchaseManager for this instance of Store
         this.menuManager = menuManager;
@@ -26,7 +37,9 @@ public class Store implements IData {
         printers = new ArrayList<>();
     }
 
-    // Adding to the lists of the devices
+    /**
+     * Takes user input and creates a Computer, and adds to the computers list
+     */
     public void createComputers() {
         // Local vars
         String name, description, manufacture;
@@ -46,6 +59,10 @@ public class Store implements IData {
         Computer aComputer = new Computer(name, description, manufacture);
         computers.add(aComputer);
     }
+
+    /**
+     * Takes user input and creates a Printer, and adds to the printers list
+     */
     public void createPrinters() {
         // Local variables
         String name, description;
@@ -67,7 +84,11 @@ public class Store implements IData {
         printers.add(aPrinter);
     }
 
-    // Creating a purchase
+    /**
+     * Takes user input and creates a Purchase
+     * - It could be a InStorePurchase or OnlinePurchase depending on the user's input.
+     * - Calls makePurchase() from our PurchaseManager, to add to the PurchaseManager purchases list.
+     */
     public void createPurchase() {
         // Initialise variables to store input values
         int customerID, deviceID, type;
@@ -104,7 +125,6 @@ public class Store implements IData {
             // Create the online purchase
             Purchase aPurchase = new OnlinePurchase(Utils.nextID(100, 999), customerID, deviceID, date, purchaseType, deliveryAddress);
 
-
             // Make the purchase from PurchaseManager
             purchaseManager.makePurchase(this, aPurchase);
         } else {
@@ -122,19 +142,29 @@ public class Store implements IData {
 
     }
 
-    // Printing the lists of the devices
+    /**
+     * Prints our list of computers
+     */
     public void printComputers() {
         for (int i = 0; i < computers.size(); i++) {
             System.out.println(computers.get(i).getClass().getSimpleName() + " (" + i + ") " + computers.get(i).toString());
         }
     }
+
+    /**
+     * Prints our list of printers
+     */
     public void printPrinters() {
         for (int i = 0; i < printers.size(); i++) {
             System.out.println(printers.get(i).getClass().getSimpleName() + " (" + i + ") " + printers.get(i).toString());
         }
     }
 
-    // Method to check if the device is available, (implemented from the IData interface).
+    /**
+     * Check if the device is available, (implemented from the IData interface).
+     * @param id ID of the device
+     * @return boolean Returns a boolean if the device is available in the list
+     */
     public boolean isDeviceAvailable(int id) {
         // Loop through the computers
         for (int i = 0; i < computers.size(); i++) {
@@ -158,7 +188,9 @@ public class Store implements IData {
         return false;
     }
 
-    // Method to run all the other methods above
+    /**
+     * Managers user input selection, to run our methods
+     */
     public void runBazar() {
         // Local variable selection
         int selection;

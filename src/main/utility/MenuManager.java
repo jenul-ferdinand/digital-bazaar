@@ -1,9 +1,19 @@
+// Package: main.utility
 package main.utility;
 
+// Scanner
 import java.util.Scanner;
 
+// === === === Class: MenuManager === === ===
 public class MenuManager {
-    public int menuItem() { // Should not be static
+    /**
+     * Prints and Manages the menu options
+     * This method will print out the different options that the user can choose.
+     * It also has functionality to take input from the user. Therefore, it will
+     * return the integer choice of the user.
+     * @return int The integer choice of the user
+     */
+    public int menuItem() {
         // Initialise scanner for input
         Scanner sel = new Scanner(System.in);
 
