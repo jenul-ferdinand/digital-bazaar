@@ -1,5 +1,5 @@
 // Package: main.models
-package main.models;
+package main.models.devices;
 
 // Utils
 import main.utility.Utils;

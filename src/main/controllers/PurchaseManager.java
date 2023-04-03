@@ -2,7 +2,7 @@
 package main.controllers;
 
 // Purchase
-import main.models.Purchase;
+import main.models.purchase.Purchase;
 // ArrayList
 import java.util.ArrayList;
 

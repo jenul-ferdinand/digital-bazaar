@@ -1,5 +1,5 @@
 // Package: main.models
-package main.models;
+package main.models.devices;
 
 // === === === Abstract Class: Device extended by Computer, Printer === === ===
 abstract class Device {

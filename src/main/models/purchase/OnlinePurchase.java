@@ -1,5 +1,5 @@
 // Package: main.models
-package main.models;
+package main.models.purchase;
 
 // PurchaseType
 import main.utility.PurchaseType;

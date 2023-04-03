@@ -1,11 +1,9 @@
-// Package: main.utility
 package main.utility;
 
-// Scanner
 import java.util.Scanner;
 
-// === === === Class: MenuManager === === ===
-public class MenuManager {
+// === === === Class: MenuManagerEmployee === === ===
+public class MenuManagerEmployee implements IMenuManager {
     /**
      * Prints and Manages the menu options
      * This method will print out the different options that the user can choose.

@@ -2,9 +2,13 @@
 package main.controllers;
 
 // Computer, Device, InStorePurchase, OnlinePurchase, Printer, and Purchase
-import main.models.*;
 // MenuManager
-import main.utility.MenuManager;
+import main.models.devices.Computer;
+import main.models.devices.Printer;
+import main.models.purchase.InStorePurchase;
+import main.models.purchase.OnlinePurchase;
+import main.models.purchase.Purchase;
+import main.utility.IMenuManager;
 // PurchaseType
 import main.utility.PurchaseType;
 // Utils
@@ -19,15 +23,15 @@ public class Store implements IData {
     // Attributes
     private ArrayList<Computer> computers;
     private ArrayList<Printer> printers;
-    private MenuManager menuManager;
+    private IMenuManager menuManager;
     private PurchaseManager purchaseManager;
 
     /**
-     * Constructs and initialises a Store with MenuManager and PurchaseManager
-     * @param menuManager Instance of MenuManager
+     * Constructs and initialises a Store with a menu manager and purchase manager
+     * @param menuManager Instance of IMenuManager
      * @param purchaseManager Instance of Purchase Manager
      */
-    public Store(MenuManager menuManager, PurchaseManager purchaseManager) {
+    public Store(IMenuManager menuManager, PurchaseManager purchaseManager) {
         // Define the MenuManager and PurchaseManager for this instance of Store
         this.menuManager = menuManager;
         this.purchaseManager = purchaseManager;
@@ -134,7 +138,7 @@ public class Store implements IData {
         } else {
             // Get the store location
             System.out.print("Enter Store Location: ");
-            storeLocation = sel.nextLine();
+            storeLocation = sel.next();
 
             // Create the in store purchase
             Purchase aPurchase = new InStorePurchase(Utils.nextID(100, 999), customerID, deviceID, date, purchaseType, storeLocation);

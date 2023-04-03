@@ -6,7 +6,8 @@ import main.controllers.PurchaseManager;
 // Store
 import main.controllers.Store;
 // MenuManager
-import main.utility.MenuManager;
+import main.utility.IMenuManager;
+import main.utility.MenuManagerAdmin;
 
 // === === === Driver Class: BazarDriver === === ===
 public class BazarDriver {
@@ -15,16 +16,20 @@ public class BazarDriver {
      * @param args
      */
     public static void main(String[] args) {
-        // Create instance of the MenuManager
-        MenuManager menuManager = new MenuManager();
+        try {
+            // Create instance of the MenuManager
+            IMenuManager menuManagerAdmin = new MenuManagerAdmin();//new MenuManagerAdmin();
 
-        // Create instance of PurchaseManager
-        PurchaseManager purchaseManager = new PurchaseManager();
+            // Create instance of PurchaseManager
+            PurchaseManager purchaseManager = new PurchaseManager();
 
-        // Create an instance of Store
-        Store store = new Store(menuManager, purchaseManager);
+            // Create an instance of Store
+            Store store = new Store(menuManagerAdmin, purchaseManager);
 
-        // Run the DigitalBazar
-        store.runBazar();
+            // Run the DigitalBazar
+            store.runBazar();
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+        }
     }
 }
