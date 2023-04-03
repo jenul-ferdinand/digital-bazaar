@@ -107,7 +107,7 @@ public class Store implements IData {
 
         // Get the date
         System.out.print("Enter Date: ");
-        date = sel.nextLine();
+        date = sel.next();
 
         // Get the type of purchase
         System.out.print("Enter Type (0 online) or (1 in-store): ");
@@ -116,11 +116,15 @@ public class Store implements IData {
         // Based on the input value, using the ternary operator to assign the corresponding enum
         PurchaseType purchaseType = type == 0 ? PurchaseType.ONLINE : PurchaseType.IN_STORE;
 
+
+
+
+
         // Depending on the purchase type, create an online or in-store purchase.
         if (purchaseType == PurchaseType.ONLINE) {
             // Get the delivery address
-            System.out.println("Enter Delivery Address: ");
-            deliveryAddress = sel.nextLine();
+            System.out.print("Enter Delivery Address: ");
+            deliveryAddress = sel.next();
 
             // Create the online purchase
             Purchase aPurchase = new OnlinePurchase(Utils.nextID(100, 999), customerID, deviceID, date, purchaseType, deliveryAddress);
@@ -129,7 +133,7 @@ public class Store implements IData {
             purchaseManager.makePurchase(this, aPurchase);
         } else {
             // Get the store location
-            System.out.println("Enter Store Location: ");
+            System.out.print("Enter Store Location: ");
             storeLocation = sel.nextLine();
 
             // Create the in store purchase
@@ -138,8 +142,6 @@ public class Store implements IData {
             // Make the purchase from PurchaseManager
             purchaseManager.makePurchase(this, aPurchase);
         }
-
-
     }
 
     /**
@@ -200,6 +202,7 @@ public class Store implements IData {
             // Assign selection to the return value of the menuItem method
             selection = menuManager.menuItem();
 
+            // Based on the selection integer of the user, run the specified method
             switch (selection) {
                 // Create computer
                 case 1:
@@ -223,7 +226,7 @@ public class Store implements IData {
                     break;
                 // List Purchases
                 case 6:
-
+                    purchaseManager.printPurchases();
                     break;
                 // Exit
                 case 7:

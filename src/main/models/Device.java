@@ -16,7 +16,7 @@ abstract class Device {
     Device(String name, String description) {
         setName(name);
         setDescription(description);
-        setId(id);
+        setId(generateId());
     }
 
     /**
@@ -78,6 +78,6 @@ abstract class Device {
      * @return Returns the attributes as a String, nicely organised.
      */
     public String toString() {
-        return "| Type: " + this.getClass().getSimpleName() + " | Name: " + getName() + " | Description: " + getDescription();
+        return "ID: " + getId() + " | Type: " + this.getClass().getSimpleName() + " | Name: " + getName() + " | Description: " + getDescription();
     }
 }

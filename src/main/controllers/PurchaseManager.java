@@ -25,5 +25,29 @@ public class PurchaseManager {
     }
 
     // Implement print purchase method here
+    public void printPurchases() {
+        // Set up the header format
+        String leftAlignFormat = "| %-5d | %-5d | %-10s | %-8s |%n";
+        String leftAlignFormatHeader = "| %-5s | %-5s | %-10s | %-8s |%n";
 
+        String header = String.format(leftAlignFormatHeader, "C-I","D-ID","Date","Type");
+        int headerLen = header.length() - 1; // -1 to ignore the return key
+        String border = String.format("%" + headerLen + "s", " ").replace(' ', '-');
+        System.out.format("%s\n", border);
+
+        // Print the headers
+        System.out.format(leftAlignFormatHeader, "C-I","D-ID","Date","Type");
+        System.out.format("%s\n", border);
+
+        // Elements of the table
+        for (int i = 0; i < purchases.size(); i++) {
+            System.out.format(leftAlignFormat,
+                    purchases.get(i).getPurchaseID(),
+                    purchases.get(i).getCustomerID(),
+                    purchases.get(i).getDate(),
+                    purchases.get(i).getPurchaseType()
+            );
+        }
+        System.out.format("%s\n", border);
+    }
 }

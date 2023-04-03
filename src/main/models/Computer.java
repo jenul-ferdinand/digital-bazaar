@@ -16,8 +16,10 @@ public class Computer extends Device {
      * @param manufacture The manufacturer of the Computer (String)
      */
     public Computer(String name, String description, String manufacture) {
+        // Set the name and description
         super(name, description);
 
+        // Set the manufacturer
         setManufacture(manufacture);
     }
 
