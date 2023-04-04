@@ -8,6 +8,7 @@ import main.controllers.Store;
 // MenuManager
 import main.utility.IMenuManager;
 import main.utility.MenuManagerAdmin;
+import main.utility.MenuManagerEmployee;
 
 // === === === Driver Class: BazarDriver === === ===
 public class BazarDriver {
@@ -18,7 +19,7 @@ public class BazarDriver {
     public static void main(String[] args) {
         try {
             // Create instance of the MenuManager
-            IMenuManager menuManagerAdmin = new MenuManagerAdmin();//new MenuManagerAdmin();
+            IMenuManager menuManagerAdmin = new MenuManagerAdmin();
 
             // Create instance of PurchaseManager
             PurchaseManager purchaseManager = new PurchaseManager();

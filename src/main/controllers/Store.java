@@ -120,10 +120,6 @@ public class Store implements IData {
         // Based on the input value, using the ternary operator to assign the corresponding enum
         PurchaseType purchaseType = type == 0 ? PurchaseType.ONLINE : PurchaseType.IN_STORE;
 
-
-
-
-
         // Depending on the purchase type, create an online or in-store purchase.
         if (purchaseType == PurchaseType.ONLINE) {
             // Get the delivery address
@@ -206,36 +202,61 @@ public class Store implements IData {
             // Assign selection to the return value of the menuItem method
             selection = menuManager.menuItem();
 
-            // Based on the selection integer of the user, run the specified method
-            switch (selection) {
-                // Create computer
-                case 1:
-                    createComputers();
-                    break;
-                // Create Printer
-                case 2:
-                    createPrinters();
-                    break;
-                // Create Purchase
-                case 3:
-                    createPurchase();
-                    break;
-                // List Computers
-                case 4:
-                    printComputers();
-                    break;
-                // List Printers
-                case 5:
-                    printPrinters();
-                    break;
-                // List Purchases
-                case 6:
-                    purchaseManager.printPurchases();
-                    break;
-                // Exit
-                case 7:
-                    System.exit(0);
-                    break;
+            // If the menuManager is an Admin
+            if (menuManager.getClass().getSimpleName().equals("MenuManagerAdmin")) {
+                // Based on the selection integer of the user, run the specified method
+                switch (selection) {
+                    // Create computer
+                    case 1:
+                        createComputers();
+                        break;
+                    // Create Printer
+                    case 2:
+                        createPrinters();
+                        break;
+                    // Create Purchase
+                    case 3:
+                        createPurchase();
+                        break;
+                    // List Computers
+                    case 4:
+                        printComputers();
+                        break;
+                    // List Printers
+                    case 5:
+                        printPrinters();
+                        break;
+                    // List Purchases
+                    case 6:
+                        purchaseManager.printPurchases();
+                        break;
+                    // Exit
+                    case 7:
+                        System.exit(0);
+                        break;
+                }
+            }
+            // Otherwise
+            else {
+                // Based on the selection integer of the user, run the specified method
+                switch (selection) {
+                    // Create computer
+                    case 1:
+                        createComputers();
+                        break;
+                    // Create Printer
+                    case 2:
+                        createPrinters();
+                        break;
+                    // Create Purchase
+                    case 3:
+                        createPurchase();
+                        break;
+                    // Exit
+                    case 4:
+                        System.exit(0);
+                        break;
+                }
             }
         }
         while (true);
