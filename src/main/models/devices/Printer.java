@@ -8,6 +8,8 @@ import main.utility.Utils;
 public class Printer extends Device {
     // Attributes
     private int ppm;
+    private static final int MIN_PPM = 1;
+    private static final int MAX_PPM = 50;
 
     /**
      * Constructs and Initialises attributes
@@ -15,10 +17,14 @@ public class Printer extends Device {
      * @param description The description of the Printer (String)
      * @param ppm The parts per million of the Printer (int)
      */
-    public Printer(String name, String description, int ppm) {
+    public Printer(String name, String description, int ppm) throws Exception {
+        // Set the name and description
         super(name, description);
 
-        setPpm(ppm);
+        // Set the ppm and handle exception
+        if (!setPpm(ppm)) {
+            throw new Exception("Invalid PPM");
+        }
     }
 
     /**
@@ -42,8 +48,15 @@ public class Printer extends Device {
      * Sets the ppm value
      * @param ppm The int value to set
      */
-    public void setPpm(int ppm) {
-        this.ppm = ppm;
+    public boolean setPpm(int ppm) {
+        // Input validation
+        boolean valid = Utils.validateInputInt(ppm, MIN_PPM, MAX_PPM);
+
+        // Set the new ppm if valid
+        if (valid) { this.ppm = ppm; }
+
+        // Return the boolean result
+        return valid;
     }
 
     /**

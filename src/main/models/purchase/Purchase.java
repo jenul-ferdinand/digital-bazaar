@@ -3,6 +3,7 @@ package main.models.purchase;
 
 // PurchaseType
 import main.utility.PurchaseType;
+import main.utility.Utils;
 
 // === === === Abstract Class: Purchase extended by InStorePurchase, OnlinePurchase === === ===
 public abstract class Purchase {
@@ -10,6 +11,7 @@ public abstract class Purchase {
     private int customerID;
     private int deviceID;
     private String date;
+    private static final int DATE_LENGTH = 8;
     private PurchaseType purchaseType;
 
     /**
@@ -20,12 +22,17 @@ public abstract class Purchase {
      * @param date String Date
      * @param purchaseType enum (Online or In-Store)
      */
-    public Purchase(int purchaseID, int customerID, int deviceID, String date, PurchaseType purchaseType) {
+    public Purchase(int purchaseID, int customerID, int deviceID,
+                    String date, PurchaseType purchaseType) throws Exception {
+
         setPurchaseID(purchaseID);
         setCustomerID(customerID);
         setDeviceID(deviceID);
-        setDate(date);
         setPurchaseType(purchaseType);
+
+        if (!setDate(date)) {
+            throw new Exception("Incorrect date details");
+        }
     }
 
     /**
@@ -88,8 +95,15 @@ public abstract class Purchase {
      * Sets our date
      * @param date String the new String to set as date
      */
-    public void setDate(String date) {
-        this.date = date;
+    public boolean setDate(String date) {
+        // Input validation
+        boolean valid = Utils.validateInputString(date, DATE_LENGTH, DATE_LENGTH);
+
+        // Set the date if valid
+        if (valid) { this.date = date; }
+
+        // Return the boolean result
+        return valid;
     }
 
     /**

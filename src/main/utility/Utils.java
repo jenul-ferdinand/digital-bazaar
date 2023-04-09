@@ -19,4 +19,12 @@ public class Utils {
         // Return a random value based on the maximum and minimum
         return (r.nextInt(high - low) + low);
     }
+
+    public static boolean validateInputString(String input, int min, int max) {
+        return input.length() >= min && input.length() <= max;
+    }
+
+    public static boolean validateInputInt(int input, int min, int max) {
+        return input >= min && input <= max;
+    }
 }

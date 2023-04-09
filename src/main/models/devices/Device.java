@@ -1,11 +1,19 @@
 // Package: main.models
 package main.models.devices;
 
+import main.utility.Utils;
+
 // === === === Abstract Class: Device extended by Computer, Printer === === ===
 abstract class Device {
     // Attributes
     private String name;
+    private static final int MIN_NAME_LENGTH = 3;
+    private static final int MAX_NAME_LENGTH = 15;
+
     private String description;
+    private static final int MIN_DESC_LENGTH = 5;
+    private static final int MAX_DESC_LENGTH = 20;
+
     private int id;
 
     /**
@@ -13,9 +21,18 @@ abstract class Device {
      * @param name String the name of the device
      * @param description String the description of the device
      */
-    Device(String name, String description) {
-        setName(name);
-        setDescription(description);
+    Device(String name, String description) throws Exception {
+        // Set the name and handle exception
+        if (!setName(name)) {
+            throw new Exception("Incorrect name details!");
+        }
+
+        // Set the description and handle exception
+        if (!setDescription(description)) {
+            throw new Exception("Incorrect description details!");
+        }
+
+        // Generate a random device id
         setId(generateId());
     }
 
@@ -44,17 +61,32 @@ abstract class Device {
     /**
      * Sets the name of the device
      * @param name String The new name to set
+     * @return boolean True or false based on user input validity
      */
-    public void setName(String name) {
-        this.name = name;
+    public boolean setName(String name) {
+        // Input validation
+        boolean valid = Utils.validateInputString(name, MIN_NAME_LENGTH, MAX_NAME_LENGTH);
+
+        // Set new name if valid
+        if (valid) { this.name = name; }
+
+        // Return the boolean result
+        return valid;
     }
 
     /**
      * Sets the description of the device
      * @param description String The new description to set
      */
-    public void setDescription(String description) {
-        this.description = description;
+    public boolean setDescription(String description) {
+        // Input validation
+        boolean valid = Utils.validateInputString(description, MIN_DESC_LENGTH, MAX_DESC_LENGTH);
+
+        // Set new description
+        if (valid) { this.description = description; }
+
+        // Return the boolean result
+        return valid;
     }
 
     /**

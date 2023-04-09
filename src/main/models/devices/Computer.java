@@ -8,6 +8,8 @@ import main.utility.Utils;
 public class Computer extends Device {
     // Attributes
     private String manufacture;
+    private static final int MIN_MANUFACTURE_LENGTH = 3;
+    private static final int MAX_MANUFACTURE_LENGTH = 15;
 
     /**
      * Constructs and Initialises attributes
@@ -15,12 +17,14 @@ public class Computer extends Device {
      * @param description The description of the Computer (String)
      * @param manufacture The manufacturer of the Computer (String)
      */
-    public Computer(String name, String description, String manufacture) {
+    public Computer(String name, String description, String manufacture) throws Exception {
         // Set the name and description
         super(name, description);
 
-        // Set the manufacturer
-        setManufacture(manufacture);
+        // Set the manufacturer and handle exception
+        if (!setManufacture(manufacture)) {
+            throw new Exception("Incorrect manufacturer details");
+        }
     }
 
     /**
@@ -44,8 +48,18 @@ public class Computer extends Device {
      * Set the manufacturer
      * @param manufacture The String to set
      */
-    public void setManufacture(String manufacture) {
+    public boolean setManufacture(String manufacture) {
+        // Guardian
+        if (manufacture.length() < MIN_MANUFACTURE_LENGTH || manufacture.length() > MAX_MANUFACTURE_LENGTH) {
+            // Unsuccessful
+            return false;
+        }
+
+        // Set the name
         this.manufacture = manufacture;
+
+        // Done
+        return true;
     }
 
     /**

@@ -12,10 +12,6 @@ import main.utility.MenuManagerEmployee;
 
 // === === === Driver Class: BazarDriver === === ===
 public class BazarDriver {
-    /**
-     * The main method of the project, the driver.
-     * @param args
-     */
     public static void main(String[] args) {
         try {
             // Create instance of the MenuManager

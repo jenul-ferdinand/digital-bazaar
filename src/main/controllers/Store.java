@@ -44,7 +44,7 @@ public class Store implements IData {
     /**
      * Takes user input and creates a Computer, and adds to the computers list
      */
-    public void createComputers() {
+    public void createComputers() throws Exception {
         // Local vars
         String name, description, manufacture;
 
@@ -52,11 +52,11 @@ public class Store implements IData {
         Scanner sel = new Scanner(System.in);
 
         // Questions and assignment
-        System.out.print("Enter Device Name: ");
+        System.out.print("Enter Device Name (3-5 chars): ");
         name = sel.nextLine();
-        System.out.print("Enter Device Description: ");
+        System.out.print("Enter Device Description (5-20 chars): ");
         description = sel.nextLine();
-        System.out.print("Enter Computer Manufacture: ");
+        System.out.print("Enter Computer Manufacture (3-15 chars): ");
         manufacture = sel.next();
 
         // Create the computer and add to the ArrayList
@@ -67,7 +67,7 @@ public class Store implements IData {
     /**
      * Takes user input and creates a Printer, and adds to the printers list
      */
-    public void createPrinters() {
+    public void createPrinters() throws Exception {
         // Local variables
         String name, description;
         int ppm;
@@ -76,11 +76,11 @@ public class Store implements IData {
         Scanner sel = new Scanner(System.in);
 
         // Questions and assignment
-        System.out.print("Enter Device Name: ");
+        System.out.print("Enter Device Name (3-15 chars): ");
         name = sel.nextLine();
-        System.out.print("Enter Device Description: ");
+        System.out.print("Enter Device Description (5-20 chars): ");
         description = sel.nextLine();
-        System.out.print("Enter Printer PPM: ");
+        System.out.print("Enter Printer PPM (1-50 range): ");
         ppm = sel.nextInt();
 
         // Create the printer and add the ArrayList
@@ -93,7 +93,7 @@ public class Store implements IData {
      * - It could be a InStorePurchase or OnlinePurchase depending on the user's input.
      * - Calls makePurchase() from our PurchaseManager, to add to the PurchaseManager purchases list.
      */
-    public void createPurchase() {
+    public void createPurchase() throws Exception {
         // Initialise variables to store input values
         int customerID, deviceID, type;
         String date, deliveryAddress, storeLocation;
@@ -110,7 +110,7 @@ public class Store implements IData {
         deviceID = sel.nextInt();
 
         // Get the date
-        System.out.print("Enter Date: ");
+        System.out.print("Enter Date (dd/mm/yy): ");
         date = sel.next();
 
         // Get the type of purchase
@@ -123,7 +123,7 @@ public class Store implements IData {
         // Depending on the purchase type, create an online or in-store purchase.
         if (purchaseType == PurchaseType.ONLINE) {
             // Get the delivery address
-            System.out.print("Enter Delivery Address: ");
+            System.out.print("Enter Delivery Address (5-20 chars): ");
             deliveryAddress = sel.next();
 
             // Create the online purchase
@@ -133,7 +133,7 @@ public class Store implements IData {
             purchaseManager.makePurchase(this, aPurchase);
         } else {
             // Get the store location
-            System.out.print("Enter Store Location: ");
+            System.out.print("Enter Store Location (3-10 chars): ");
             storeLocation = sel.next();
 
             // Create the in store purchase
@@ -193,7 +193,7 @@ public class Store implements IData {
     /**
      * Managers user input selection, to run our methods
      */
-    public void runBazar() {
+    public void runBazar() throws Exception {
         // Local variable selection
         int selection;
 
