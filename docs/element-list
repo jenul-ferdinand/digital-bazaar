@@ -1,4 +1,5 @@
 main
 main.controllers
-main.models
+main.models.devices
+main.models.purchase
 main.utility
