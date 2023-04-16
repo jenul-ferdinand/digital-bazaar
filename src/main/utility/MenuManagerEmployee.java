@@ -10,6 +10,8 @@ public class MenuManagerEmployee implements IMenuManager {
      * It also has functionality to take input from the user. Therefore, it will
      * return the integer choice of the user.
      * @return int The integer choice of the user
+     *
+     * @author Jenul Ferdinand
      */
     public int menuItem() {
         // Initialise scanner for input

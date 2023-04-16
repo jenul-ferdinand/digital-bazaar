@@ -21,6 +21,8 @@ public abstract class Purchase {
      * @param deviceID int Device ID
      * @param date String Date
      * @param purchaseType enum (Online or In-Store)
+     *
+     * @author Jenul Ferdinand
      */
     public Purchase(int purchaseID, int customerID, int deviceID,
                     String date, PurchaseType purchaseType) throws Exception {

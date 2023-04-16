@@ -18,6 +18,8 @@ import java.util.ArrayList;
 // Scanner
 import java.util.Scanner;
 
+import static main.utility.Utils.getStringInput;
+
 // === === === Class === === ===
 public class Store implements IData {
     // Attributes
@@ -30,6 +32,8 @@ public class Store implements IData {
      * Constructs and initialises a Store with a menu manager and purchase manager
      * @param menuManager Instance of IMenuManager
      * @param purchaseManager Instance of Purchase Manager
+     *
+     * @author Jenul Ferdinand
      */
     public Store(IMenuManager menuManager, PurchaseManager purchaseManager) {
         // Define the MenuManager and PurchaseManager for this instance of Store
@@ -43,21 +47,14 @@ public class Store implements IData {
 
     /**
      * Takes user input and creates a Computer, and adds to the computers list
+     *
+     * @author Jenul Ferdinand
      */
     public void createComputers() throws Exception {
-        // Local vars
-        String name, description, manufacture;
-
-        // Initialise scanner
-        Scanner sel = new Scanner(System.in);
-
-        // Questions and assignment
-        System.out.print("Enter Device Name (3-5 chars): ");
-        name = sel.nextLine();
-        System.out.print("Enter Device Description (5-20 chars): ");
-        description = sel.nextLine();
-        System.out.print("Enter Computer Manufacture (3-15 chars): ");
-        manufacture = sel.next();
+        // Get input
+        String name = Utils.getStringInput("Enter Device Name (3-5 chars): ");
+        String description = Utils.getStringInput("Enter Device Description (5-20 chars): ");
+        String manufacture = Utils.getStringInput("Enter Computer Manufacture (3-15 chars): ");
 
         // Create the computer and add to the ArrayList
         Computer aComputer = new Computer(name, description, manufacture);
@@ -66,22 +63,14 @@ public class Store implements IData {
 
     /**
      * Takes user input and creates a Printer, and adds to the printers list
+     *
+     * @author Jenul Ferdinand
      */
     public void createPrinters() throws Exception {
-        // Local variables
-        String name, description;
-        int ppm;
-
-        // Initialise scanner
-        Scanner sel = new Scanner(System.in);
-
-        // Questions and assignment
-        System.out.print("Enter Device Name (3-15 chars): ");
-        name = sel.nextLine();
-        System.out.print("Enter Device Description (5-20 chars): ");
-        description = sel.nextLine();
-        System.out.print("Enter Printer PPM (1-50 range): ");
-        ppm = sel.nextInt();
+        // Get input
+        String name = Utils.getStringInput("Enter Device Name (3-15 chars): ");
+        String description = Utils.getStringInput("Enter Device Description (5-20 chars): ");
+        int ppm = Utils.getIntegerInput("Enter Printer PPM (1-50 range): ");
 
         // Create the printer and add the ArrayList
         Printer aPrinter = new Printer(name, description, ppm);
@@ -92,30 +81,15 @@ public class Store implements IData {
      * Takes user input and creates a Purchase
      * - It could be a InStorePurchase or OnlinePurchase depending on the user's input.
      * - Calls makePurchase() from our PurchaseManager, to add to the PurchaseManager purchases list.
+     *
+     * @author Jenul Ferdinand
      */
     public void createPurchase() throws Exception {
-        // Initialise variables to store input values
-        int customerID, deviceID, type;
-        String date, deliveryAddress, storeLocation;
-
-        // Initialise scanner
-        Scanner sel = new Scanner(System.in);
-
-        // Get the customer ID
-        System.out.print("Enter Customer ID: ");
-        customerID = sel.nextInt();
-
-        // Get the device ID
-        System.out.print("Enter Device ID: ");
-        deviceID = sel.nextInt();
-
-        // Get the date
-        System.out.print("Enter Date (dd/mm/yy): ");
-        date = sel.next();
-
-        // Get the type of purchase
-        System.out.print("Enter Type (0 online) or (1 in-store): ");
-        type = sel.nextInt();
+        // Get input
+        int customerID = Utils.getIntegerInput("Enter Customer ID: ");
+        int deviceID = Utils.getIntegerInput("Enter Device ID: ");
+        String date = Utils.getStringInput("Enter Date (dd/mm/yy): ");
+        int type = Utils.getIntegerInput("Enter Type (0 online) or (1 in-store): ");
 
         // Based on the input value, using the ternary operator to assign the corresponding enum
         PurchaseType purchaseType = type == 0 ? PurchaseType.ONLINE : PurchaseType.IN_STORE;
@@ -123,8 +97,7 @@ public class Store implements IData {
         // Depending on the purchase type, create an online or in-store purchase.
         if (purchaseType == PurchaseType.ONLINE) {
             // Get the delivery address
-            System.out.print("Enter Delivery Address (5-20 chars): ");
-            deliveryAddress = sel.next();
+            String deliveryAddress = Utils.getStringInput("Enter Delivery Address (5-20 chars): ");
 
             // Create the online purchase
             Purchase aPurchase = new OnlinePurchase(Utils.nextID(100, 999), customerID, deviceID, date, purchaseType, deliveryAddress);
@@ -133,8 +106,7 @@ public class Store implements IData {
             purchaseManager.makePurchase(this, aPurchase);
         } else {
             // Get the store location
-            System.out.print("Enter Store Location (3-10 chars): ");
-            storeLocation = sel.next();
+            String storeLocation = Utils.getStringInput("Enter Store Location (3-10 chars): ");
 
             // Create the in store purchase
             Purchase aPurchase = new InStorePurchase(Utils.nextID(100, 999), customerID, deviceID, date, purchaseType, storeLocation);
@@ -146,6 +118,8 @@ public class Store implements IData {
 
     /**
      * Prints our list of computers
+     *
+     * @author Jenul Ferdinand
      */
     public void printComputers() {
         for (int i = 0; i < computers.size(); i++) {
@@ -155,6 +129,8 @@ public class Store implements IData {
 
     /**
      * Prints our list of printers
+     *
+     * @author Jenul Ferdinand
      */
     public void printPrinters() {
         for (int i = 0; i < printers.size(); i++) {
@@ -166,6 +142,8 @@ public class Store implements IData {
      * Check if the device is available, (implemented from the IData interface).
      * @param id ID of the device
      * @return boolean Returns a boolean if the device is available in the list
+     *
+     * @author Jenul Ferdinand
      */
     public boolean isDeviceAvailable(int id) {
         // Loop through the computers
@@ -192,6 +170,8 @@ public class Store implements IData {
 
     /**
      * Managers user input selection, to run our methods
+     *
+     * @author Jenul Ferdinand
      */
     public void runBazar() throws Exception {
         // Local variable selection

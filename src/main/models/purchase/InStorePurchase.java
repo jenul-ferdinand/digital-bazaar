@@ -19,6 +19,8 @@ public class InStorePurchase extends Purchase {
      * @param date String Date
      * @param purchaseType enum Purchase Type (Online or In-Store)
      * @param storeLocation String Store Location
+     *
+     * @author Jenul Ferdinand
      */
     public InStorePurchase(int purchaseID, int customerID, int deviceID, String date, PurchaseType purchaseType, String storeLocation) throws Exception {
         super(purchaseID, customerID, deviceID, date, purchaseType);
@@ -32,6 +34,8 @@ public class InStorePurchase extends Purchase {
     /**
      * Get the storeLocation
      * @return String Returns the location of the store as a String
+     *
+     * @author Jenul Ferdinand
      */
     public String getStoreLocation() {
         return storeLocation;
@@ -40,6 +44,8 @@ public class InStorePurchase extends Purchase {
     /**
      * Sets the storeLocation
      * @param storeLocation String The name of the store location to set
+     *
+     * @author Jenul Ferdinand
      */
     public boolean setStoreLocation(String storeLocation) {
         // Input validation

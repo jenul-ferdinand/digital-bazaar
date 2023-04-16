@@ -5,6 +5,8 @@ package main.utility;
 
 /**
  * Enum to specify the type of purchase (Online or In-Store)
+ *
+ * @author Jenul Ferdinand
  */
 public enum PurchaseType {
     IN_STORE,

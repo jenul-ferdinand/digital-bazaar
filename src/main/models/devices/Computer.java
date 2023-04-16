@@ -16,6 +16,8 @@ public class Computer extends Device {
      * @param name The name of the Computer (String)
      * @param description The description of the Computer (String)
      * @param manufacture The manufacturer of the Computer (String)
+     *
+     * @author Jenul Ferdinand
      */
     public Computer(String name, String description, String manufacture) throws Exception {
         // Set the name and description
@@ -30,6 +32,8 @@ public class Computer extends Device {
     /**
      * ID Generator (abstract extension from Device)
      * @return int Returns a random value between the low and high
+     *
+     * @author Jenul Ferdinand
      */
     @Override
     public int generateId() {
@@ -39,6 +43,8 @@ public class Computer extends Device {
     /**
      * Get the manufacturer
      * @return String returns the manufacturer
+     *
+     * @author Jenul Ferdinand
      */
     public String getManufacture() {
         return manufacture;
@@ -47,6 +53,8 @@ public class Computer extends Device {
     /**
      * Set the manufacturer
      * @param manufacture The String to set
+     *
+     * @author Jenul Ferdinand
      */
     public boolean setManufacture(String manufacture) {
         // Guardian
@@ -65,6 +73,8 @@ public class Computer extends Device {
     /**
      * Returns the attributes of the class as a String
      * @return String returns the attributes as a String
+     *
+     * @author Jenul Ferdinand
      */
     public String toString() {
         return super.toString() + " | Manufacture: " + this.getManufacture();

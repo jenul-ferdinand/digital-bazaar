@@ -19,6 +19,8 @@ public class OnlinePurchase extends Purchase {
      * @param date String Date
      * @param purchaseType enum Purchase Type (Online or In-Store)
      * @param deliveryAddress String Delivery Address
+     *
+     * @author Jenul Ferdinand
      */
     public OnlinePurchase(int purchaseID, int customerID, int deviceID, String date, PurchaseType purchaseType, String deliveryAddress) throws Exception {
         super(purchaseID, customerID, deviceID, date, purchaseType);

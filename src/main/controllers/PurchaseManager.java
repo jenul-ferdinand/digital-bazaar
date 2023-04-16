@@ -16,6 +16,8 @@ public class PurchaseManager {
      * This method is called in the CreatePurchase method inside Store
      * @param devices Instance of IData, which is passed in through Store, createPurchase()
      * @param data Instance of purchase, which is passed in through Store, createPurchase()
+     *
+     * @author Jenul Ferdinand
      */
     public void makePurchase(IData devices, Purchase data) {
         if (devices.isDeviceAvailable(data.getDeviceID())) {

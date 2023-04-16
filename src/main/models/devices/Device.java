@@ -20,6 +20,8 @@ abstract class Device {
      * Constructs and Initialises attributes
      * @param name String the name of the device
      * @param description String the description of the device
+     *
+     * @author Jenul Ferdinand
      */
     Device(String name, String description) throws Exception {
         // Set the name and handle exception
@@ -39,12 +41,16 @@ abstract class Device {
     /**
      * Abstract method to generate id for the extensions of this class
      * @return int Return the generated ID
+     *
+     * @author Jenul Ferdinand
      */
     public abstract int generateId();
 
     /**
      * Get the name of the device
      * @return String Return the name of the device
+     *
+     * @author Jenul Ferdinand
      */
     public String getName() {
         return name;
@@ -53,6 +59,8 @@ abstract class Device {
     /**
      * Get the description of the device
      * @return String Return the description of the device
+     *
+     * @author Jenul Ferdinand
      */
     public String getDescription() {
         return description;
@@ -62,6 +70,8 @@ abstract class Device {
      * Sets the name of the device
      * @param name String The new name to set
      * @return boolean True or false based on user input validity
+     *
+     * @author Jenul Ferdinand
      */
     public boolean setName(String name) {
         // Input validation
@@ -77,6 +87,8 @@ abstract class Device {
     /**
      * Sets the description of the device
      * @param description String The new description to set
+     *
+     * @author Jenul Ferdinand
      */
     public boolean setDescription(String description) {
         // Input validation
@@ -92,6 +104,8 @@ abstract class Device {
     /**
      * Get the ID of the device
      * @return int Returns the ID of the device
+     *
+     * @author Jenul Ferdinand
      */
     public int getId() {
         return id;
@@ -100,6 +114,8 @@ abstract class Device {
     /**
      * Set the ID of the device
      * @param id int The new ID to set
+     *
+     * @author Jenul Ferdinand
      */
     public void setId(int id) {
         this.id = id;
@@ -108,6 +124,8 @@ abstract class Device {
     /**
      * toString Method
      * @return Returns the attributes as a String, nicely organised.
+     *
+     * @author Jenul Ferdinand
      */
     public String toString() {
         return "ID: " + getId() + " | Type: " + this.getClass().getSimpleName() + " | Name: " + getName() + " | Description: " + getDescription();

@@ -16,6 +16,8 @@ public class Printer extends Device {
      * @param name The name of the Printer (String)
      * @param description The description of the Printer (String)
      * @param ppm The parts per million of the Printer (int)
+     *
+     * @author Jenul Ferdinand
      */
     public Printer(String name, String description, int ppm) throws Exception {
         // Set the name and description
@@ -30,6 +32,8 @@ public class Printer extends Device {
     /**
      * ID Generator (abstract extension from Device)
      * @return int Returns a random value between the low and high
+     *
+     * @author Jenul Ferdinand
      */
     @Override
     public int generateId() {
@@ -39,6 +43,8 @@ public class Printer extends Device {
     /**
      * Gets the parts per million of the printer
      * @return int Returns the ppm value
+     *
+     * @author Jenul Ferdinand
      */
     public int getPpm() {
         return ppm;
@@ -47,6 +53,8 @@ public class Printer extends Device {
     /**
      * Sets the ppm value
      * @param ppm The int value to set
+     *
+     * @author Jenul Ferdinand
      */
     public boolean setPpm(int ppm) {
         // Input validation
@@ -62,6 +70,8 @@ public class Printer extends Device {
     /**
      * Returns the attributes of the class as a String
      * @return String returns the attributes as a String
+     *
+     * @author Jenul Ferdinand
      */
     public String toString() {
         return super.toString() + " | PPM: " + this.getPpm();
