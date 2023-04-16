@@ -7,6 +7,8 @@ public interface IData {
      * Checks if the device is available (Implemented in Store)
      * @param id Get the id integer
      * @return boolean Return true or false, based on if the device exists
+     *
+     * @author Jenul Ferdinand
      */
     boolean isDeviceAvailable(int id);
 }

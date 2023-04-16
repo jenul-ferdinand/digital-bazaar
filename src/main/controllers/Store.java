@@ -2,9 +2,13 @@
 package main.controllers;
 
 // Computer, Device, InStorePurchase, OnlinePurchase, Printer, and Purchase
-import main.models.*;
 // MenuManager
-import main.utility.MenuManager;
+import main.models.devices.Computer;
+import main.models.devices.Printer;
+import main.models.purchase.InStorePurchase;
+import main.models.purchase.OnlinePurchase;
+import main.models.purchase.Purchase;
+import main.utility.IMenuManager;
 // PurchaseType
 import main.utility.PurchaseType;
 // Utils
@@ -14,20 +18,24 @@ import java.util.ArrayList;
 // Scanner
 import java.util.Scanner;
 
+import static main.utility.Utils.getStringInput;
+
 // === === === Class === === ===
 public class Store implements IData {
     // Attributes
     private ArrayList<Computer> computers;
     private ArrayList<Printer> printers;
-    private MenuManager menuManager;
+    private IMenuManager menuManager;
     private PurchaseManager purchaseManager;
 
     /**
-     * Constructs and initialises a Store with MenuManager and PurchaseManager
-     * @param menuManager Instance of MenuManager
+     * Constructs and initialises a Store with a menu manager and purchase manager
+     * @param menuManager Instance of IMenuManager
      * @param purchaseManager Instance of Purchase Manager
+     *
+     * @author Jenul Ferdinand
      */
-    public Store(MenuManager menuManager, PurchaseManager purchaseManager) {
+    public Store(IMenuManager menuManager, PurchaseManager purchaseManager) {
         // Define the MenuManager and PurchaseManager for this instance of Store
         this.menuManager = menuManager;
         this.purchaseManager = purchaseManager;
@@ -39,21 +47,14 @@ public class Store implements IData {
 
     /**
      * Takes user input and creates a Computer, and adds to the computers list
+     *
+     * @author Jenul Ferdinand
      */
-    public void createComputers() {
-        // Local vars
-        String name, description, manufacture;
-
-        // Initialise scanner
-        Scanner sel = new Scanner(System.in);
-
-        // Questions and assignment
-        System.out.print("Enter Device Name: ");
-        name = sel.nextLine();
-        System.out.print("Enter Device Description: ");
-        description = sel.nextLine();
-        System.out.print("Enter Computer Manufacture: ");
-        manufacture = sel.next();
+    public void createComputers() throws Exception {
+        // Get input
+        String name = Utils.getStringInput("Enter Device Name (3-5 chars): ");
+        String description = Utils.getStringInput("Enter Device Description (5-20 chars): ");
+        String manufacture = Utils.getStringInput("Enter Computer Manufacture (3-15 chars): ");
 
         // Create the computer and add to the ArrayList
         Computer aComputer = new Computer(name, description, manufacture);
@@ -62,22 +63,14 @@ public class Store implements IData {
 
     /**
      * Takes user input and creates a Printer, and adds to the printers list
+     *
+     * @author Jenul Ferdinand
      */
-    public void createPrinters() {
-        // Local variables
-        String name, description;
-        int ppm;
-
-        // Initialise scanner
-        Scanner sel = new Scanner(System.in);
-
-        // Questions and assignment
-        System.out.print("Enter Device Name: ");
-        name = sel.nextLine();
-        System.out.print("Enter Device Description: ");
-        description = sel.nextLine();
-        System.out.print("Enter Printer PPM: ");
-        ppm = sel.nextInt();
+    public void createPrinters() throws Exception {
+        // Get input
+        String name = Utils.getStringInput("Enter Device Name (3-15 chars): ");
+        String description = Utils.getStringInput("Enter Device Description (5-20 chars): ");
+        int ppm = Utils.getIntegerInput("Enter Printer PPM (1-50 range): ");
 
         // Create the printer and add the ArrayList
         Printer aPrinter = new Printer(name, description, ppm);
@@ -88,43 +81,23 @@ public class Store implements IData {
      * Takes user input and creates a Purchase
      * - It could be a InStorePurchase or OnlinePurchase depending on the user's input.
      * - Calls makePurchase() from our PurchaseManager, to add to the PurchaseManager purchases list.
+     *
+     * @author Jenul Ferdinand
      */
-    public void createPurchase() {
-        // Initialise variables to store input values
-        int customerID, deviceID, type;
-        String date, deliveryAddress, storeLocation;
-
-        // Initialise scanner
-        Scanner sel = new Scanner(System.in);
-
-        // Get the customer ID
-        System.out.print("Enter Customer ID: ");
-        customerID = sel.nextInt();
-
-        // Get the device ID
-        System.out.print("Enter Device ID: ");
-        deviceID = sel.nextInt();
-
-        // Get the date
-        System.out.print("Enter Date: ");
-        date = sel.next();
-
-        // Get the type of purchase
-        System.out.print("Enter Type (0 online) or (1 in-store): ");
-        type = sel.nextInt();
+    public void createPurchase() throws Exception {
+        // Get input
+        int customerID = Utils.getIntegerInput("Enter Customer ID: ");
+        int deviceID = Utils.getIntegerInput("Enter Device ID: ");
+        String date = Utils.getStringInput("Enter Date (dd/mm/yy): ");
+        int type = Utils.getIntegerInput("Enter Type (0 online) or (1 in-store): ");
 
         // Based on the input value, using the ternary operator to assign the corresponding enum
         PurchaseType purchaseType = type == 0 ? PurchaseType.ONLINE : PurchaseType.IN_STORE;
 
-
-
-
-
         // Depending on the purchase type, create an online or in-store purchase.
         if (purchaseType == PurchaseType.ONLINE) {
             // Get the delivery address
-            System.out.print("Enter Delivery Address: ");
-            deliveryAddress = sel.next();
+            String deliveryAddress = Utils.getStringInput("Enter Delivery Address (5-20 chars): ");
 
             // Create the online purchase
             Purchase aPurchase = new OnlinePurchase(Utils.nextID(100, 999), customerID, deviceID, date, purchaseType, deliveryAddress);
@@ -133,8 +106,7 @@ public class Store implements IData {
             purchaseManager.makePurchase(this, aPurchase);
         } else {
             // Get the store location
-            System.out.print("Enter Store Location: ");
-            storeLocation = sel.nextLine();
+            String storeLocation = Utils.getStringInput("Enter Store Location (3-10 chars): ");
 
             // Create the in store purchase
             Purchase aPurchase = new InStorePurchase(Utils.nextID(100, 999), customerID, deviceID, date, purchaseType, storeLocation);
@@ -146,6 +118,8 @@ public class Store implements IData {
 
     /**
      * Prints our list of computers
+     *
+     * @author Jenul Ferdinand
      */
     public void printComputers() {
         for (int i = 0; i < computers.size(); i++) {
@@ -155,6 +129,8 @@ public class Store implements IData {
 
     /**
      * Prints our list of printers
+     *
+     * @author Jenul Ferdinand
      */
     public void printPrinters() {
         for (int i = 0; i < printers.size(); i++) {
@@ -166,6 +142,8 @@ public class Store implements IData {
      * Check if the device is available, (implemented from the IData interface).
      * @param id ID of the device
      * @return boolean Returns a boolean if the device is available in the list
+     *
+     * @author Jenul Ferdinand
      */
     public boolean isDeviceAvailable(int id) {
         // Loop through the computers
@@ -192,8 +170,10 @@ public class Store implements IData {
 
     /**
      * Managers user input selection, to run our methods
+     *
+     * @author Jenul Ferdinand
      */
-    public void runBazar() {
+    public void runBazar() throws Exception {
         // Local variable selection
         int selection;
 
@@ -202,36 +182,61 @@ public class Store implements IData {
             // Assign selection to the return value of the menuItem method
             selection = menuManager.menuItem();
 
-            // Based on the selection integer of the user, run the specified method
-            switch (selection) {
-                // Create computer
-                case 1:
-                    createComputers();
-                    break;
-                // Create Printer
-                case 2:
-                    createPrinters();
-                    break;
-                // Create Purchase
-                case 3:
-                    createPurchase();
-                    break;
-                // List Computers
-                case 4:
-                    printComputers();
-                    break;
-                // List Printers
-                case 5:
-                    printPrinters();
-                    break;
-                // List Purchases
-                case 6:
-                    purchaseManager.printPurchases();
-                    break;
-                // Exit
-                case 7:
-                    System.exit(0);
-                    break;
+            // If the menuManager is an Admin
+            if (menuManager.getClass().getSimpleName().equals("MenuManagerAdmin")) {
+                // Based on the selection integer of the user, run the specified method
+                switch (selection) {
+                    // Create computer
+                    case 1:
+                        createComputers();
+                        break;
+                    // Create Printer
+                    case 2:
+                        createPrinters();
+                        break;
+                    // Create Purchase
+                    case 3:
+                        createPurchase();
+                        break;
+                    // List Computers
+                    case 4:
+                        printComputers();
+                        break;
+                    // List Printers
+                    case 5:
+                        printPrinters();
+                        break;
+                    // List Purchases
+                    case 6:
+                        purchaseManager.printPurchases();
+                        break;
+                    // Exit
+                    case 7:
+                        System.exit(0);
+                        break;
+                }
+            }
+            // Otherwise
+            else {
+                // Based on the selection integer of the user, run the specified method
+                switch (selection) {
+                    // Create computer
+                    case 1:
+                        createComputers();
+                        break;
+                    // Create Printer
+                    case 2:
+                        createPrinters();
+                        break;
+                    // Create Purchase
+                    case 3:
+                        createPurchase();
+                        break;
+                    // Exit
+                    case 4:
+                        System.exit(0);
+                        break;
+                }
             }
         }
         while (true);
