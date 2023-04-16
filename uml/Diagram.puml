@@ -9,7 +9,7 @@ package controllers {
 
     class PurchaseManager
 
-    class IData
+    interface IData <<interface>>
 }
 
 package models {
@@ -27,7 +27,9 @@ package models {
 }
 
 package utility {
-    class MenuInput
+    class MenuManagerAdmin
+    class MenuManagerEmployee
+    interface IMenuManager <<interface>>
 
     class Utils
 
@@ -38,14 +40,19 @@ package utility {
 Printer --u-|> Device : <<extends>>
 Computer --u-|> Device : <<extends>>
 
-Printer "*" <--- "1" Store : creates
-Computer "*" <--- "1" Store : creates
+Printer "0..*" <--- "1" Store : creates
+Computer "0..*" <--- "1" Store : creates
 
 Printer ...> Utils
 Computer ...>  Utils
 
 BazarDriver ....> Store
-BazarDriver ....> MenuInput
+BazarDriver ..r..> IMenuManager
+
+MenuManagerAdmin ...|> IMenuManager
+MenuManagerEmployee ...|> IMenuManager
+
+Store ...> Utils
 
 BazarDriver "1" ---> "1" PurchaseManager : creates
 
