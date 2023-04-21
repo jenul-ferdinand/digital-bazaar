@@ -53,11 +53,11 @@ PurchaseManager "1" --> "0..*" Purchase : creates
 ' === Dependencies ===
 
 ' Printers uses Utils
-Printer ...> Utils
+Printer ..[#red].> Utils
 ' Computer uses Utils
-Computer ...>  Utils
+Computer ..[#red].>  Utils
 ' Store uses Utils
-Store ...> Utils
+Store ..[#red].> Utils
 
 ' BazarDriver creates an instance of Store
 BazarDriver ....> Store
@@ -65,7 +65,7 @@ BazarDriver ....> Store
 BazarDriver ....> IMenuManager
 
 ' Purchase depends on PurchaseType
-Purchase ...> PurchaseType
+Purchase .r.> PurchaseType
 
 ' === Realisations ===
 
@@ -78,7 +78,7 @@ MenuManagerEmployee ...|> IMenuManager
 PurchaseManager ...|> IData
 
 
-' --- Generalisations ---
+' === Generalisations ===
 
 ' Printer & Computer are generalised by Device
 Printer --u-|> Device : <<extends>>
