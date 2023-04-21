@@ -1,6 +1,7 @@
 @startuml
 
 skinparam linetype ortho
+hide circle
 
 class BazarDriver
 
@@ -37,29 +38,53 @@ package utility {
 }
 
 
-Printer --u-|> Device : <<extends>>
-Computer --u-|> Device : <<extends>>
+' === Associations ===
 
+' Store creates Printer & Computer
 Printer "0..*" <--- "1" Store : creates
 Computer "0..*" <--- "1" Store : creates
 
-Printer ...> Utils
-Computer ...>  Utils
-
-BazarDriver ....> Store
-BazarDriver ..r..> IMenuManager
-
-MenuManagerAdmin ...|> IMenuManager
-MenuManagerEmployee ...|> IMenuManager
-
-Store ...> Utils
-
+' BazarDriver creates an instance of PurchaseManager
 BazarDriver "1" ---> "1" PurchaseManager : creates
 
-PurchaseManager "1" --> "*" Purchase : creates
-PurchaseManager ...> IData
+' PurchaseManager creates Purchase's
+PurchaseManager "1" --> "0..*" Purchase : creates
 
+' === Dependencies ===
+
+' Printers uses Utils
+Printer ...> Utils
+' Computer uses Utils
+Computer ...>  Utils
+' Store uses Utils
+Store ...> Utils
+
+' BazarDriver creates an instance of Store
+BazarDriver ....> Store
+' BazarDriver creates an instance of IMenuManager
+BazarDriver ....> IMenuManager
+
+' Purchase depends on PurchaseType
 Purchase ...> PurchaseType
+
+' === Realisations ===
+
+' IMenuManager is realized by IMenuManager
+MenuManagerAdmin ...|> IMenuManager
+' IMenuManager is realized by MenuManagerEmployee
+MenuManagerEmployee ...|> IMenuManager
+
+' IData is realized by PurchaseManager
+PurchaseManager ...|> IData
+
+
+' --- Generalisations ---
+
+' Printer & Computer are generalised by Device
+Printer --u-|> Device : <<extends>>
+Computer --u-|> Device : <<extends>>
+
+' OnlinePurchase and InStorePurchase are generalised by Purchase
 OnlinePurchase --u-|> Purchase : <<extends>>
 InStorePurchase --u-|> Purchase : <<extends>>
 
